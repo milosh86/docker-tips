@@ -1,14 +1,16 @@
 # Docker Tips
 
 ## create image and skip cache
-    
-    docker build -f docker/DockerfileGW -t device-gw --no-cache .
+    docker build -f docker/Dockerfile123 -t my-image-name --no-cache .
 
 ## list images
     docker images
 
 ## list all containers
     docker ps -a
+
+## see containers's output (logs)
+    docker logs <container_name_or_id>
 
 ## attach to docker container
      - check container id of running container: docker ps
@@ -46,3 +48,6 @@
     docker rm $(docker ps -q -f 'status=exited')
     docker rmi $(docker images -q -f "dangling=true")
     docker volume rm $(docker volume ls -qf dangling=true)
+
+## show containers stats (with container names instead of IDs)
+    docker stats $(docker ps --format={{.Names}})
